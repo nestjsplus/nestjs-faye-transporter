@@ -1,8 +1,6 @@
 import { Logger } from '@nestjs/common';
 import {
   ClientProxy,
-  Serializer,
-  Deserializer,
   ReadPacket,
   PacketId,
   WritePacket,
@@ -10,31 +8,9 @@ import {
 
 import { FayeClient } from '../../external/faye-client.interface';
 import { ERROR_EVENT } from '../../constants';
+import { FayeOptions } from '../../interfaces/faye-options.interface';
 
 import * as faye from 'faye';
-
-interface FayeOptions {
-  /**
-   * faye server mount point (e.g., http://localhost:8000/faye)
-   */
-  url?: string;
-  /**
-   * time in seconds to wait before assuming server is dead and attempting reconnect
-   */
-  timeout?: number;
-  /**
-   * time in seconds before attempting a resend a message when network error detected
-   */
-  retry?: number;
-  /**
-   * instance of a class implementing the serialize method
-   */
-  serializer?: Serializer;
-  /**
-   * instance of a class implementing the deserialize method
-   */
-  deserializer?: Deserializer;
-}
 
 export class ClientFaye extends ClientProxy {
   protected readonly logger = new Logger(ClientProxy.name);

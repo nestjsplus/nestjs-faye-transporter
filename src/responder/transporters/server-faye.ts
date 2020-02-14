@@ -4,8 +4,6 @@ import {
   IncomingRequest,
   ReadPacket,
   PacketId,
-  Serializer,
-  Deserializer,
 } from '@nestjs/microservices';
 import { isUndefined } from '@nestjs/common/utils/shared.utils';
 import { NO_MESSAGE_HANDLER } from '@nestjs/microservices/constants';
@@ -13,33 +11,11 @@ import { NO_MESSAGE_HANDLER } from '@nestjs/microservices/constants';
 import { FayeContext } from '../ctx-host/faye-context';
 import { FayeClient } from '../../external/faye-client.interface';
 import { ERROR_EVENT } from '../../constants';
+import { FayeOptions } from '../../interfaces/faye-options.interface';
 
 import { Observable } from 'rxjs';
 
 import * as faye from 'faye';
-
-interface FayeOptions {
-  /**
-   * faye server mount point (e.g., http://localhost:8000/faye)
-   */
-  url?: string;
-  /**
-   * time in seconds to wait before assuming server is dead and attempting reconnect
-   */
-  timeout?: number;
-  /**
-   * time in seconds before attempting a resend a message when network error detected
-   */
-  retry?: number;
-  /**
-   * instance of a class implementing the serialize method
-   */
-  serializer?: Serializer;
-  /**
-   * instance of a class implementing the deserialize method
-   */
-  deserializer?: Deserializer;
-}
 
 export class ServerFaye extends Server implements CustomTransportStrategy {
   private fayeClient: FayeClient;
