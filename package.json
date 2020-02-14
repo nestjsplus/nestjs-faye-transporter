@@ -1,7 +1,7 @@
 {
   "name": "@nestjsplus/nestjs-faye-transporter",
-  "version": "1.0.0",
-  "description": "NestJS custom transporter for Faye.js",
+  "version": "1.0.1",
+  "description": "NestJS custom transporter for Faye",
   "author": "John Biundo <johnfbiundo@gmail.com>",
   "license": "MIT",
   "readmeFilename": "README.md",

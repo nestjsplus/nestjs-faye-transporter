@@ -14,6 +14,19 @@ export interface FayeOptions {
    */
   retry?: number;
   /**
+   * connections to server routed via proxy
+   */
+  proxy?: string;
+  /**
+   * per-transport endpoint objects; e.g., endpoints: { sebsocket: 'http://ws.example.com./'}
+   */
+  endpoints?: any;
+  /**
+   * backoff scheduler: see https://faye.jcoglan.com/browser/dispatch.html
+   */
+  // tslint:disable-next-line: ban-types
+  scheduler?: Function;
+  /**
    * instance of a class implementing the serialize method
    */
   serializer?: Serializer;
