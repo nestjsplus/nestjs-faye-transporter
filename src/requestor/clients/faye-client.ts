@@ -8,21 +8,10 @@ import {
   WritePacket,
 } from '@nestjs/microservices';
 
-import { EventEmitter } from 'events';
+import { FayeClient } from '../../external/faye-client.interface';
+import { ERROR_EVENT } from '../../constants';
 
-// import * as faye from 'faye';
-// tslint:disable-next-line: no-var-requires
-const faye = require('faye');
-
-const ERROR_EVENT = 'transport:down';
-
-interface FayeClient extends EventEmitter {
-  publish(subject: string, msg?: string | Buffer): void;
-  subscribe(subject: string, callback: Function): Promise<any>;
-  unsubscribe(subject: string): void;
-  connect(): void;
-  disconnect(): void;
-}
+import * as faye from 'faye';
 
 interface FayeOptions {
   /**

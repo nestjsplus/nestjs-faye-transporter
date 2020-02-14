@@ -6,7 +6,7 @@
   </a>
 </div>
 
-<h3 align="center">NestJS npm Package Starter</h3>
+<h3 align="center">NestJS Faye Custom Transporter</h3>
 
 <div align="center">
   <a href="https://nestjs.com" target="_blank">
@@ -20,7 +20,7 @@
 2. Run npm/yarn install
 
 ```bash
-cd nestjs-package-starter
+cd nestjs-faye-transporter
 npm install
 ```
 

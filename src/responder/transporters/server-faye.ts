@@ -8,38 +8,15 @@ import {
   Deserializer,
 } from '@nestjs/microservices';
 import { isUndefined } from '@nestjs/common/utils/shared.utils';
-import { BaseRpcContext } from '@nestjs/microservices/ctx-host/base-rpc.context';
 import { NO_MESSAGE_HANDLER } from '@nestjs/microservices/constants';
+
+import { FayeContext } from '../ctx-host/faye-context';
+import { FayeClient } from '../../external/faye-client.interface';
+import { ERROR_EVENT } from '../../constants';
 
 import { Observable } from 'rxjs';
 
-// import * as faye from 'faye';
-// tslint:disable-next-line: no-var-requires
-const faye = require('faye');
-
-const ERROR_EVENT = 'transport:down';
-
-type FayeContextArgs = [string];
-
-// tslint:disable: max-classes-per-file
-export class FayeContext extends BaseRpcContext<FayeContextArgs> {
-  constructor(args: FayeContextArgs) {
-    super(args);
-  }
-
-  /**
-   * Returns the name of the channel.
-   */
-  getChannel() {
-    return this.args[0];
-  }
-}
-
-interface FayeClient {
-  publish(subject: string, msg?: string | Buffer): void;
-  subscribe(subject: string, callback: Function): void;
-  disconnect(): void;
-}
+import * as faye from 'faye';
 
 interface FayeOptions {
   /**

@@ -129,6 +129,10 @@
         "version": "873c09f1c309389742d98b7b67419a8e0a5fa6f10ce59fd5149ecd31a2818594",
         "signature": "873c09f1c309389742d98b7b67419a8e0a5fa6f10ce59fd5149ecd31a2818594"
       },
+      "./src/constants.ts": {
+        "version": "c33cac60419c31d0d4841bc51c016391661b0a4726218ea83d5726422b970a82",
+        "signature": "95324af5b7fdad466bf28460970a6f6092af81af7f0dfec1063868a26719ed7c"
+      },
       "./node_modules/reflect-metadata/index.d.ts": {
         "version": "8d6d51a5118d000ed3bfe6e1dd1335bebfff3fef23cd2af2f84a24d30f90cc90",
         "signature": "8d6d51a5118d000ed3bfe6e1dd1335bebfff3fef23cd2af2f84a24d30f90cc90"
@@ -1517,9 +1521,13 @@
         "version": "ff3a45e62d966d8cd7735588a451801ff62aa34060e5124457c99e2220f9d1d3",
         "signature": "ff3a45e62d966d8cd7735588a451801ff62aa34060e5124457c99e2220f9d1d3"
       },
+      "./src/external/faye-client.interface.ts": {
+        "version": "9b22e7391db3e1badc5ca17bf13d639fe3fba0fa21c097d0880796f73afff6f2",
+        "signature": "b9dc70e8f8c83ad08b84ccc28d461a9aeed93750bae9a663b018ba87ace697e8"
+      },
       "./src/requestor/clients/faye-client.ts": {
-        "version": "6d7244afcb7328250fd809a46853ef55851e163d68b345f374f65071ad13ea94",
-        "signature": "b90edba5c4c9512afd0ecd308e678123a5ef2341806b0577e72bfdf5232a0d82"
+        "version": "a14ca5dbfd65a8c11fb6ee1020c49e34a84f6ffb33604b526adc3aad12f85df7",
+        "signature": "b92dd331b3546a496c7a706fd1a1837c17c8b43b26f1f92f88ccaf86b6149c01"
       },
       "./src/requestor/clients/index.ts": {
         "version": "a98944cab790b59433532aaa57cd19dfe34ab2dbb8b125b9140a1c03729c5187",
@@ -1569,25 +1577,29 @@
         "version": "fa855c1d5a686fc6db1ab5f30be3f1766bef63418f386be74cdf8ecbd8ae98c9",
         "signature": "fa855c1d5a686fc6db1ab5f30be3f1766bef63418f386be74cdf8ecbd8ae98c9"
       },
+      "./src/responder/ctx-host/faye-context.ts": {
+        "version": "6d217c172f57ae47c8a37825bc0880fbd7f468f2e5bf3c41a44270540fe52aa4",
+        "signature": "f0ed44371d6e4287f8696cf8015fc50a5cbe9a1a4483a55b2297ec5cb349d255"
+      },
       "./src/responder/transporters/server-faye.ts": {
-        "version": "46ef9650a9efa354b17391a1eeba4a05b4150ba999644f050fd6682474bccbbc",
-        "signature": "9d3e704c9b39f62d0a31d269bfe6d17fef86c4ed869da629e612ae4693d2c50c"
+        "version": "ca3820e1db1b8cbb40353cc09bc663ab5a5ba277bfa027185d685aee094ab3c6",
+        "signature": "4650c36fabd3894a0d4c7134f69fe6ce69ea1df87468a08b9edbc459bdda0a88"
       },
       "./src/responder/transporters/index.ts": {
         "version": "394cf9823abd35af645f9ca4b3f0df0f1b32de062a7941e158a9e39fa84596e4",
         "signature": "394cf9823abd35af645f9ca4b3f0df0f1b32de062a7941e158a9e39fa84596e4"
       },
+      "./src/responder/ctx-host/index.ts": {
+        "version": "7569840989dd14d234577c9afbdfdbfa42e754232f18d665880df9d3cc3fa837",
+        "signature": "7569840989dd14d234577c9afbdfdbfa42e754232f18d665880df9d3cc3fa837"
+      },
       "./src/responder/index.ts": {
-        "version": "77881883a8bc3a1f04c5c815dc251f69f15d1ec388871805735df1b2fdb3ba0b",
-        "signature": "77881883a8bc3a1f04c5c815dc251f69f15d1ec388871805735df1b2fdb3ba0b"
+        "version": "5dc7ca806e0e739e37edc9da01768788a200c0bf9d5c26d68af531a40b3a9de3",
+        "signature": "5dc7ca806e0e739e37edc9da01768788a200c0bf9d5c26d68af531a40b3a9de3"
       },
       "./src/index.ts": {
         "version": "282dd81946e032a64bf507e86e228513b7469938fba7d80ff1b482c51f382d71",
         "signature": "8ea7549854a1ce476d2806c54f7840b0fa2545e988cd3e312fac0b2ede648848"
-      },
-      "./src/test.ts": {
-        "version": "5961b5674e0298468a7d2241d78b6dbbf0797c4a3f509d89455418f7c8fa2ae5",
-        "signature": "9d9dcf9c60f444a2f889d584d6bb19c3984cb9a490a8b25b4569c63815416d9b"
       },
       "./node_modules/@babel/types/lib/index.d.ts": {
         "version": "b05f0003bcf151be87491c83a4ba37b561798f1282b92cedb3a4e75a0224eb85",
@@ -1707,6 +1719,7 @@
       "baseUrl": "./",
       "noLib": false,
       "incremental": true,
+      "watch": true,
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
@@ -1897,6 +1910,12 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/typescript/lib/lib.es2017.full.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "./src/constants.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -4798,10 +4817,17 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/external/faye-client.interface.ts": [
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/requestor/clients/faye-client.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/microservices/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
+        "./src/external/faye-client.interface.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -4896,11 +4922,20 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/responder/ctx-host/faye-context.ts": [
+        "./node_modules/@nestjs/microservices/ctx-host/base-rpc.context.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/responder/transporters/server-faye.ts": [
         "./node_modules/@nestjs/microservices/index.d.ts",
         "./node_modules/@nestjs/common/utils/shared.utils.d.ts",
-        "./node_modules/@nestjs/microservices/ctx-host/base-rpc.context.d.ts",
         "./node_modules/@nestjs/microservices/constants.d.ts",
+        "./src/responder/ctx-host/faye-context.ts",
+        "./src/external/faye-client.interface.ts",
+        "./src/constants.ts",
         "./node_modules/rxjs/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -4914,10 +4949,18 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/responder/ctx-host/index.ts": [
+        "./src/responder/ctx-host/faye-context.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./src/responder/index.ts": [
         "./src/responder/deserializers/index.ts",
         "./src/responder/serializers/index.ts",
         "./src/responder/transporters/index.ts",
+        "./src/responder/ctx-host/index.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -4926,12 +4969,6 @@
       "./src/index.ts": [
         "./src/requestor/index.ts",
         "./src/responder/index.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "./src/test.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -5322,6 +5359,12 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./node_modules/reflect-metadata/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "./node_modules/@nestjs/common/cache/cache.constants.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -5933,6 +5976,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -5961,6 +6005,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -5974,6 +6019,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -6596,6 +6642,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -6941,6 +6988,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/cache/interceptors/cache.interceptor.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/common/interfaces/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -7161,6 +7209,7 @@
       ],
       "./node_modules/@nestjs/common/http/http.service.d.ts": [
         "./node_modules/axios/index.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -7223,6 +7272,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/serializer/class-serializer.interceptor.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/common/interfaces/external/class-transform-options.interface.d.ts",
         "./node_modules/@nestjs/common/interfaces/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
@@ -7275,6 +7325,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/common/index.d.ts": [
+        "./node_modules/reflect-metadata/index.d.ts",
         "./node_modules/@nestjs/common/cache/index.d.ts",
         "./node_modules/@nestjs/common/decorators/index.d.ts",
         "./node_modules/@nestjs/common/enums/index.d.ts",
@@ -7330,6 +7381,7 @@
       ],
       "./node_modules/@nestjs/microservices/server/server.d.ts": [
         "./node_modules/@nestjs/common/services/logger.service.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/ctx-host/base-rpc.context.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/deserializer.interface.d.ts",
@@ -7375,6 +7427,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/microservices/interfaces/message-handler.interface.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -7418,6 +7471,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/microservices/client/client-proxy.d.ts": [
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/deserializer.interface.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/serializer.interface.d.ts",
@@ -7428,6 +7482,7 @@
       ],
       "./node_modules/@nestjs/microservices/client/client-grpc.d.ts": [
         "./node_modules/@nestjs/common/services/logger.service.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/client/client-proxy.d.ts",
         "./node_modules/@types/node/fs.d.ts",
@@ -7464,6 +7519,7 @@
       ],
       "./node_modules/@nestjs/microservices/client/client-mqtt.d.ts": [
         "./node_modules/@nestjs/common/services/logger.service.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/external/mqtt-client.interface.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/client/client-proxy.d.ts",
@@ -7510,6 +7566,7 @@
       ],
       "./node_modules/@nestjs/microservices/client/client-redis.d.ts": [
         "./node_modules/@nestjs/common/services/logger.service.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/external/redis.interface.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/client/client-proxy.d.ts",
@@ -7521,6 +7578,7 @@
       "./node_modules/@nestjs/microservices/client/client-rmq.d.ts": [
         "./node_modules/@nestjs/common/services/logger.service.d.ts",
         "./node_modules/@types/node/events.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@nestjs/microservices/interfaces/index.d.ts",
         "./node_modules/@nestjs/microservices/client/client-proxy.d.ts",
         "./node_modules/@types/node/ts3.2/index.d.ts",
@@ -7717,6 +7775,7 @@
       ],
       "./node_modules/@nestjs/microservices/exceptions/base-rpc-exception-filter.d.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/rxjs/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
@@ -8015,6 +8074,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/core/index.d.ts": [
+        "./node_modules/reflect-metadata/index.d.ts",
         "./node_modules/@nestjs/core/adapters/index.d.ts",
         "./node_modules/@nestjs/core/application-config.d.ts",
         "./node_modules/@nestjs/core/constants.d.ts",
@@ -8178,6 +8238,7 @@
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "./node_modules/@nestjs/microservices/index.d.ts": [
+        "./node_modules/reflect-metadata/index.d.ts",
         "./node_modules/@nestjs/microservices/client/index.d.ts",
         "./node_modules/@nestjs/microservices/ctx-host/index.d.ts",
         "./node_modules/@nestjs/microservices/decorators/index.d.ts",
@@ -8194,10 +8255,13 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/external/faye-client.interface.ts": [
+        "./node_modules/@types/node/events.d.ts"
+      ],
       "./src/requestor/clients/faye-client.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./node_modules/@nestjs/microservices/index.d.ts",
-        "./node_modules/@types/node/events.d.ts"
+        "./src/external/faye-client.interface.ts",
+        "./node_modules/@nestjs/microservices/index.d.ts"
       ],
       "./src/requestor/clients/index.ts": [
         "./src/requestor/clients/faye-client.ts"
@@ -8243,17 +8307,24 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "./src/responder/ctx-host/faye-context.ts": [
+        "./node_modules/@nestjs/microservices/ctx-host/base-rpc.context.d.ts"
+      ],
       "./src/responder/transporters/server-faye.ts": [
-        "./node_modules/@nestjs/microservices/ctx-host/base-rpc.context.d.ts",
+        "./src/external/faye-client.interface.ts",
         "./node_modules/@nestjs/microservices/index.d.ts"
       ],
       "./src/responder/transporters/index.ts": [
         "./src/responder/transporters/server-faye.ts"
       ],
+      "./src/responder/ctx-host/index.ts": [
+        "./src/responder/ctx-host/faye-context.ts"
+      ],
       "./src/responder/index.ts": [
         "./src/responder/deserializers/index.ts",
         "./src/responder/serializers/index.ts",
-        "./src/responder/transporters/index.ts"
+        "./src/responder/transporters/index.ts",
+        "./src/responder/ctx-host/index.ts"
       ],
       "./src/index.ts": [
         "./src/requestor/index.ts",
@@ -8449,15 +8520,42 @@
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "./node_modules/reflect-metadata/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./node_modules/typescript/lib/lib.es5.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.d.ts",
+      "./node_modules/typescript/lib/lib.es2016.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.d.ts",
+      "./node_modules/typescript/lib/lib.dom.d.ts",
+      "./node_modules/typescript/lib/lib.dom.iterable.d.ts",
+      "./node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
+      "./node_modules/typescript/lib/lib.scripthost.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "./node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "./node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.intl.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.promise.d.ts",
+      "./node_modules/typescript/lib/lib.es2018.regexp.d.ts",
+      "./node_modules/typescript/lib/lib.esnext.intl.d.ts",
+      "./node_modules/typescript/lib/lib.esnext.bigint.d.ts",
+      "./node_modules/typescript/lib/lib.es2017.full.d.ts",
+      "./src/constants.ts",
       "./node_modules/reflect-metadata/index.d.ts",
       "./node_modules/@nestjs/common/cache/cache.constants.d.ts",
       "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
@@ -8805,6 +8903,7 @@
       "./node_modules/@nestjs/microservices/server/index.d.ts",
       "./node_modules/@nestjs/microservices/tokens.d.ts",
       "./node_modules/@nestjs/microservices/index.d.ts",
+      "./src/external/faye-client.interface.ts",
       "./src/requestor/clients/faye-client.ts",
       "./src/requestor/clients/index.ts",
       "./src/requestor/serializers/outbound-message-identity.serializer.ts",
@@ -8818,11 +8917,11 @@
       "./src/responder/serializers/outbound-response-identity.serializer.ts",
       "./src/responder/serializers/index.ts",
       "./node_modules/@nestjs/microservices/constants.d.ts",
-      "./src/responder/transporters/server-faye.ts",
+      "./src/responder/ctx-host/faye-context.ts",
       "./src/responder/transporters/index.ts",
+      "./src/responder/ctx-host/index.ts",
       "./src/responder/index.ts",
       "./src/index.ts",
-      "./src/test.ts",
       "./node_modules/@babel/types/lib/index.d.ts",
       "./node_modules/@types/babel__generator/index.d.ts",
       "./node_modules/@types/babel__traverse/index.d.ts",
@@ -8849,38 +8948,7 @@
       "./node_modules/@types/supertest/index.d.ts",
       "./node_modules/@types/yargs-parser/index.d.ts",
       "./node_modules/@types/yargs/index.d.ts",
-      "./node_modules/typescript/lib/lib.es5.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.d.ts",
-      "./node_modules/typescript/lib/lib.es2016.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.d.ts",
-      "./node_modules/typescript/lib/lib.dom.d.ts",
-      "./node_modules/typescript/lib/lib.dom.iterable.d.ts",
-      "./node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
-      "./node_modules/typescript/lib/lib.scripthost.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.core.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.collection.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.generator.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.iterable.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.promise.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.proxy.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.reflect.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.symbol.d.ts",
-      "./node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
-      "./node_modules/typescript/lib/lib.es2016.array.include.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.object.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.string.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.intl.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.intl.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.promise.d.ts",
-      "./node_modules/typescript/lib/lib.es2018.regexp.d.ts",
-      "./node_modules/typescript/lib/lib.esnext.intl.d.ts",
-      "./node_modules/typescript/lib/lib.esnext.bigint.d.ts",
-      "./node_modules/typescript/lib/lib.es2017.full.d.ts"
+      "./src/responder/transporters/server-faye.ts"
     ]
   },
   "version": "3.7.5"
