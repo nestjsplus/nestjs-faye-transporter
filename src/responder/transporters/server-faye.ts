@@ -98,7 +98,9 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
      */
     this.messageHandlers.forEach((handler, pattern) => {
       if (handler.isEventHandler) {
-        this.fayeClient.subscribe(pattern, async (message: ReadPacket) => {
+        this.fayeClient.subscribe(pattern, async (rawPacket: ReadPacket) => {
+          const packet = this.parsePacket(rawPacket);
+          const message = this.deserializer.deserialize(packet);
           await handler(message.data);
         });
       } else {
@@ -113,8 +115,17 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
   public getMessageHandler(pattern: string, handler: Function): Function {
     return async (message: ReadPacket) => {
       const response = await handler(message.data);
-      this.fayeClient.publish(`${pattern}_res`, JSON.stringify({ response }));
+      const packet = { err: undefined, response, isDisposed: true };
+      this.fayeClient.publish(`${pattern}_res`, JSON.stringify(packet));
     };
+  }
+
+  public parsePacket(content) {
+    try {
+      return JSON.parse(content);
+    } catch (e) {
+      return content;
+    }
   }
 
   // error handling for faye server
