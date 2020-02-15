@@ -1,4 +1,8 @@
-import { Server, CustomTransportStrategy } from '@nestjs/microservices';
+import {
+  Server,
+  CustomTransportStrategy,
+  ReadPacket,
+} from '@nestjs/microservices';
 
 import { FayeClient } from '../../external/faye-client.interface';
 import { ERROR_EVENT } from '../../constants';
@@ -46,30 +50,35 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     return new faye.Client(url, options);
   }
 
-  // kick things off
+  /**
+   * kick things off
+   */
   public start(callback) {
-    // register for error events
+    // register handler for error events
     this.handleError(this.fayeClient);
 
-    // traverse all registered patterns and bind handlers to them
-    this.bindHandlers();
+    // register faye message handlers
+    this.subscribeToEvents();
 
     // call any user-supplied callback from `app.listen()` call
     callback();
   }
 
-  public bindHandlers() {
+  /**
+   * Register event handlers for all Nest "event" style patterns
+   */
+  public subscribeToEvents() {
     /**
      * messageHandlers is populated by the Framework (on the Server superclass).
      *
-     * It's a map of pattern -> handler key/value pairs
-     * handler is a function with an additional boolean property
+     * It's a map of `pattern` -> `handler` key/value pairs
+     * `handler` is a function with an additional boolean property
      * indicating it's Nest type: event or message (request/response)
      */
     this.messageHandlers.forEach((handler, pattern) => {
       if (handler.isEventHandler) {
-        this.fayeClient.subscribe(pattern, async (message: any) => {
-          await handler(message.data, {});
+        this.fayeClient.subscribe(pattern, async (message: ReadPacket) => {
+          await handler(message.data);
         });
       }
     });
