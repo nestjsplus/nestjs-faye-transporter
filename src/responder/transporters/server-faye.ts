@@ -9,6 +9,7 @@ import { ERROR_EVENT } from '../../constants';
 import { FayeOptions } from '../../interfaces/faye-options.interface';
 
 import * as faye from 'faye';
+import { Observable } from 'rxjs';
 
 export class ServerFaye extends Server implements CustomTransportStrategy {
   // Holds our client interface to the Faye broker.
@@ -112,6 +113,8 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     });
   }
 
+  // simple: handles a response that is a plain value or object, but
+  // does NOT handle a response stream RxJS stream
   public getMessageHandler(pattern: string, handler: Function): Function {
     return async (rawPacket: ReadPacket) => {
       const packet = this.parsePacket(rawPacket);
@@ -127,6 +130,27 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
         `${pattern}_res`,
         this.serializer.serialize(writePacket),
       );
+    };
+  }
+
+  // better: handles streams as well
+  public xgetMessageHandler(pattern: string, handler: Function): Function {
+    return async (rawPacket: ReadPacket) => {
+      const packet = this.parsePacket(rawPacket);
+      const message = this.deserializer.deserialize(packet);
+
+      const response$ = this.transformToObservable(
+        await handler(message.data, {}),
+      ) as Observable<any>;
+
+      const publish = (response: any) => {
+        Object.assign(response, { id: (message as any).id });
+        const outgoingResponse = this.serializer.serialize(response);
+        return this.fayeClient.publish(`${pattern}_res`, outgoingResponse);
+      };
+
+      // tslint:disable-next-line: no-unused-expression
+      response$ && this.send(response$, publish);
     };
   }
 
