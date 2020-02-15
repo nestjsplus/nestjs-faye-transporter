@@ -21,10 +21,16 @@ export class ClientFaye extends ClientProxy {
   constructor(protected readonly options?: FayeOptions) {
     super();
 
+    // super class establishes the serializer and deserializer; sets up
+    // defaults unless overridden via `options`
     this.initializeSerializer(options);
     this.initializeDeserializer(options);
   }
 
+  /**
+   * connect returns a Promise that resolves to a connected Faye client.
+   * This construct is expected by the framework.
+   */
   public async connect(): Promise<any> {
     if (this.fayeClient) {
       return this.connection;
@@ -37,6 +43,9 @@ export class ClientFaye extends ClientProxy {
     return this.connection;
   }
 
+  /**
+   *
+   */
   public createSubscriptionHandler(
     packet: ReadPacket & PacketId,
     callback: (packet: WritePacket) => any,
@@ -62,6 +71,9 @@ export class ClientFaye extends ClientProxy {
     };
   }
 
+  /**
+   *
+   */
   protected publish(
     partialPacket: ReadPacket,
     callback: (packet: WritePacket) => any,
@@ -141,7 +153,8 @@ export class ClientFaye extends ClientProxy {
   }
 
   public close() {
-    this.fayeClient.disconnect();
+    // tslint:disable-next-line: no-unused-expression
+    this.fayeClient && this.fayeClient.disconnect();
     this.fayeClient = null;
     this.connection = null;
   }

@@ -31,9 +31,9 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
   }
 
   /**
-   * listen() is required by `CustomTransportStrategy` It's called by the
-   * framework when the transporter is instantiated, and kicks off a lot of
-   * the machinery.
+   * listen() is required by the `CustomTransportStrategy` interface. It's
+   * called by the framework when the transporter is instantiated, and kicks
+   * off a lot of the framework machinery.
    */
   public listen(callback: () => void) {
     this.fayeClient = this.createFayeClient();
@@ -48,6 +48,7 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
   }
 
   public close() {
+    this.fayeClient.disconnect();
     this.fayeClient = null;
   }
 
@@ -60,6 +61,9 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     callback();
   }
 
+  /**
+   *
+   */
   public bindEvents(client: FayeClient) {
     const registeredPatterns = [...this.messageHandlers.keys()];
     registeredPatterns.forEach(pattern => {
