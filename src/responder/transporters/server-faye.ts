@@ -113,10 +113,20 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
   }
 
   public getMessageHandler(pattern: string, handler: Function): Function {
-    return async (message: ReadPacket) => {
+    return async (rawPacket: ReadPacket) => {
+      const packet = this.parsePacket(rawPacket);
+      const message = this.deserializer.deserialize(packet);
       const response = await handler(message.data);
-      const packet = { err: undefined, response, isDisposed: true };
-      this.fayeClient.publish(`${pattern}_res`, JSON.stringify(packet));
+      const writePacket = {
+        err: undefined,
+        response,
+        isDisposed: true,
+        id: (message as any).id,
+      };
+      this.fayeClient.publish(
+        `${pattern}_res`,
+        this.serializer.serialize(writePacket),
+      );
     };
   }
 
