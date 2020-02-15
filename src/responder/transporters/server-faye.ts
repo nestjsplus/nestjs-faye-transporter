@@ -13,6 +13,8 @@ import { FayeClient } from '../../external/faye-client.interface';
 import { ERROR_EVENT } from '../../constants';
 import { FayeOptions } from '../../interfaces/faye-options.interface';
 
+import * as util from 'util';
+
 import { Observable } from 'rxjs';
 
 import * as faye from 'faye';
@@ -40,6 +42,13 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     this.start(callback);
   }
 
+  /**
+   * close() is required by `CustomTransportStrategy`...
+   */
+  public close() {
+    this.fayeClient = null;
+  }
+
   public createFayeClient(): FayeClient {
     // pull out url, and strip serializer and deserializer properties
     // from options so we conform to the `faye.Client()` interface
@@ -47,59 +56,70 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     return new faye.Client(url, options);
   }
 
-  public close() {
-    this.fayeClient = null;
-  }
-
   // kick things off
   public start(callback) {
     // register for error events
     this.handleError(this.fayeClient);
     // traverse all registered patterns and bind handlers to them
-    this.bindEvents(this.fayeClient);
+    this.bindHandlers();
     callback();
   }
 
-  public bindEvents(client: FayeClient) {
-    const registeredPatterns = [...this.messageHandlers.keys()];
-    registeredPatterns.forEach(pattern => {
-      const { isEventHandler } = this.messageHandlers.get(pattern);
-      client.subscribe(
-        isEventHandler ? pattern : `${pattern}_ack`,
-        this.getMessageHandler(pattern, client).bind(this),
-      );
+  //  public bindHandlers() {
+  //    /**
+  //     * messageHandlers is populated by the Framework on the superclass
+  //     * It's a map of pattern -> handler key/value pairs
+  //     * handler is a function with an additional boolean property
+  //     * indicating it's Nest type: event or message (request/response)
+  //     */
+  //    this.messageHandlers.forEach((handler, pattern) => {
+  //      if (handler.isEventHandler) {
+  //        this.fayeClient.subscribe(
+  //          pattern,
+  //          this.getSubscribeFunction(pattern, handler),
+  //        );
+  //      }
+  //    });
+  //  }
+
+  public bindHandlers() {
+    /**
+     * messageHandlers is populated by the Framework (on the Server superclass).
+     *
+     * It's a map of pattern -> handler key/value pairs
+     * handler is a function with an additional boolean property
+     * indicating it's Nest type: event or message (request/response)
+     */
+    this.messageHandlers.forEach((handler, pattern) => {
+      if (handler.isEventHandler) {
+        this.fayeClient.subscribe(pattern, async (message: any) => {
+          await handler(JSON.parse(message).data, {});
+        });
+      }
     });
   }
 
-  public getMessageHandler(pattern: string, client: FayeClient): Function {
-    /**
-     * Returns a "Faye subscriber function" that will be registered to
-     * be called by the Faye client library when a message with this "channel"
-     * (AKA "pattern") is received.
-     *
-     * Faye subscriptions are done with client.subscribe():
-     *
-     * client.subscribe('pattern',
-     *   // Faye subscription function
-     *   (message) => {
-     *      // dynamic messageHandlerFunction
-     *   }
-     * )
-     *
-     * So this function returns a "Faye subscriber function" of that shape.
-     *
-     * Since the sequence of steps that the subscriber function must execute when a
-     * particular subscribed message is received depends on the type of message
-     * (i.e., Request/Response (@MessagePattern()) or Event (@EventPattern())).
-     * our "Faye subscription function" must take this into account.
-     *
-     * The solution is to register a handler that dynamically executes those steps,
-     * including invoking the ultimate handler (e.g., `getCustomers()`).
-     *
-     * That's what `this.handleMessage(...) does.
-     */
+  /**
+   * Build our faye subscribe function.  These have signature
+   * (message: any) => {
+   *    // handle message
+   * }
+   *
+   * Our factory
+   */
+  public getSubscribeFunction(pattern: string, handler: Function): Function {
     return async (message: any) => {
-      return this.handleMessage(pattern, message, client);
+      // rehydrate JSON
+      const rawPacket = this.parseMessage(message);
+
+      // deserialize object - mainly to handle changing the shape of
+      // inbound objects from non-Nest producers
+      const packet = this.deserializer.deserialize(rawPacket, {});
+
+      // for now, we're just handling events
+      // return this.handleEvent(pattern, packet, {} as FayeContext);
+      // const handler = this.getHandlerByPattern(pattern);
+      await handler(packet.data, {});
     };
   }
 
