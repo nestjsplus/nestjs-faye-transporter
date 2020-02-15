@@ -58,7 +58,8 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     this.handleError(this.fayeClient);
 
     // register faye message handlers
-    this.subscribeToEvents();
+    // this.subscribeToEvents();
+    this.bindHandlers();
 
     // call any user-supplied callback from `app.listen()` call
     callback();
@@ -82,6 +83,38 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
         });
       }
     });
+  }
+
+  /**
+   *
+   */
+  public bindHandlers() {
+    /**
+     * messageHandlers is populated by the Framework (on the Server superclass).
+     *
+     * It's a map of `pattern` -> `handler` key/value pairs
+     * `handler` is a function with an additional boolean property
+     * indicating it's Nest type: event or message (request/response)
+     */
+    this.messageHandlers.forEach((handler, pattern) => {
+      if (handler.isEventHandler) {
+        this.fayeClient.subscribe(pattern, async (message: ReadPacket) => {
+          await handler(message.data);
+        });
+      } else {
+        this.fayeClient.subscribe(
+          `${pattern}_ack`,
+          this.getMessageHandler(pattern, handler),
+        );
+      }
+    });
+  }
+
+  public getMessageHandler(pattern: string, handler: Function): Function {
+    return async (message: ReadPacket) => {
+      const response = await handler(message.data);
+      this.fayeClient.publish(`${pattern}_res`, JSON.stringify({ response }));
+    };
   }
 
   // error handling for faye server
