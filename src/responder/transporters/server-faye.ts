@@ -69,7 +69,7 @@ export class ServerFaye extends Server implements CustomTransportStrategy {
     this.messageHandlers.forEach((handler, pattern) => {
       if (handler.isEventHandler) {
         this.fayeClient.subscribe(pattern, async (message: any) => {
-          await handler(JSON.parse(message).data, {});
+          await handler(message.data, {});
         });
       }
     });
