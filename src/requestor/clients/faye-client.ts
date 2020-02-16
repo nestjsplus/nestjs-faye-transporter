@@ -5,9 +5,10 @@ import {
   PacketId,
   WritePacket,
 } from '@nestjs/microservices';
+import { share } from 'rxjs/operators';
 
 import { FayeClient } from '../../external/faye-client.interface';
-import { ERROR_EVENT } from '../../constants';
+import { CONNECT_EVENT, ERROR_EVENT } from '../../constants';
 import { FayeOptions } from '../../interfaces/faye-options.interface';
 
 import * as faye from 'faye';
@@ -38,7 +39,13 @@ export class ClientFaye extends ClientProxy {
     const { url, serializer, deserializer, ...options } = this.options;
     this.fayeClient = new faye.Client(url, options);
     this.fayeClient.connect();
-    this.connection = Promise.resolve(this.fayeClient);
+    this.connection = await this.connect$(
+      this.fayeClient,
+      ERROR_EVENT,
+      CONNECT_EVENT,
+    )
+      .pipe(share())
+      .toPromise();
     this.handleError(this.fayeClient);
     return this.connection;
   }
